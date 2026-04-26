@@ -1,4 +1,6 @@
 <div class="page">
+  <h1 class="site-title">PokéPharm</h1>
+
   <div class="container">
     <div class="card"></div>
     <div class="overlay"></div>
@@ -54,50 +56,63 @@
     font-family: Arial, sans-serif;
   
     background:
-      radial-gradient(circle at center, rgba(30, 90, 80, 0.55), transparent 55%),
-      radial-gradient(circle at top, rgba(40, 120, 105, 0.35), transparent 45%),
-      linear-gradient(135deg, #062b28 0%, #0b3a34 45%, #041b1a 100%);
+      radial-gradient(circle at center, rgba(35, 70, 105, 0.28), transparent 58%),
+      linear-gradient(135deg, #071622 0%, #0b2030 50%, #081722 100%);
   }
 
   body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-
-  background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.025) 0px,
-      rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px,
-      transparent 4px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(0, 0, 0, 0.035) 0px,
-      rgba(0, 0, 0, 0.035) 1px,
-      transparent 1px,
-      transparent 5px
-    );
-
-  opacity: 0.65;
-  mix-blend-mode: soft-light;
-}
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.018) 0px,
+        rgba(255, 255, 255, 0.018) 1px,
+        transparent 1px,
+        transparent 6px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(0, 0, 0, 0.018) 0px,
+        rgba(0, 0, 0, 0.018) 1px,
+        transparent 1px,
+        transparent 7px
+      );
+  
+    opacity: 0.35;
+    mix-blend-mode: soft-light;
+  }
   
   .page {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 22px;
     padding: 24px;
     position: relative;
     z-index: 1;
   }
 
+  .site-title {
+  margin: 0;
+  color: rgba(235, 245, 255, 0.92);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(90, 150, 220, 0.28);
+}
+  
   .container {
-    width: min(88vw, calc(88vh * 1065 / 1477), 420px);
+    width: min(84vw, calc((100vh - 130px) * 1065 / 1477), 390px);
     aspect-ratio: 1065 / 1477;
     position: relative;
     transition: transform 0.12s ease;
