@@ -59,20 +59,18 @@
       shine.style.opacity = "0";
     }
   });
-
+  
   container.addEventListener("pointerleave", function () {
     isHovering = false;
-
+  
     physicalCard.style.setProperty("--tilt-x", "0deg");
     physicalCard.style.setProperty("--tilt-y", "0deg");
     physicalCard.style.setProperty("--scale", "1");
-
+  
     shine.style.opacity = "0";
-
+  
     cursorLights.forEach((light) => {
       light.style.opacity = "0";
-      light.style.setProperty("--x", "50%");
-      light.style.setProperty("--y", "50%");
     });
   });
 
