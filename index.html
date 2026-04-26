@@ -1,52 +1,106 @@
-<div class="container">
-  <div class="overlay"></div>
-  <div class="card"></div>
+<div class="page">
+  <div class="container">
+    <div class="card"></div>
+    <div class="overlay"></div>
+  </div>
 </div>
 
 <script>
-  var container = document.querySelector('.container')
-  var overlay = document.querySelector('.overlay')
-  contriner.addEventListener('mousemove', function(e){
-    var x = e.offsetX
-    var y = e.offsetY
-    var rotateY = -40/1065 * x + 20
-    var rotateX = -40/1477 * y + 20
+  const container = document.querySelector(".container");
+  const overlay = document.querySelector(".overlay");
 
-    overlay.style = 'background-position : ${x/5 + y/5}%'
-    
-    container.style = 'transform : perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)'
-  })
+  container.addEventListener("mousemove", function (e) {
+    const rect = container.getBoundingClientRect();
 
-  container.addEventListener('mouseout', function(){
-    overlay.style = 'filter : opacity(0)'
-    container.style = 'transform : perspective(1000px) rotateY(0deg) rotateX(0deg)'
-  })
-  
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const percentX = x / rect.width;
+    const percentY = y / rect.height;
+
+    const rotateY = percentX * 40 - 20;
+    const rotateX = -(percentY * 40 - 20);
+
+    overlay.style.opacity = "0.85";
+    overlay.style.backgroundPosition = `${percentX * 100}% ${percentY * 100}%`;
+
+    container.style.transform = `
+      perspective(1000px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      scale(1.03)
+    `;
+  });
+
+  container.addEventListener("mouseleave", function () {
+    overlay.style.opacity = "0";
+    container.style.transform = `
+      perspective(1000px)
+      rotateX(0deg)
+      rotateY(0deg)
+      scale(1)
+    `;
+  });
 </script>
 
 <style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: #111;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+
+  .page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+  }
+
   .container {
-    width: 1065px; height: 1477px; transition : all 0.1s;
-    position: relative
+    width: min(88vw, calc(88vh * 1065 / 1477), 420px);
+    aspect-ratio: 1065 / 1477;
+    position: relative;
+    transition: transform 0.12s ease;
+    transform-style: preserve-3d;
   }
-  .overlay{
+
+  .card,
+  .overlay {
     position: absolute;
-    width: 1065px;
-    height: 1477px;
-    background: linear-gradient(105deg,
-                                transparent 40%,
-                                rgba(255, 219, 112, 0.8) 45%,
-                                rgba(132, 50, 255, 0.6) 50%,
-                                transparent 54%);
-    filter: brightness(1.1) opacity(0.8);
-    mix-blend-mode: color-dodge;
-    background-size: 150% 150%;
-    background-position: 100%;
-    transition: all 0.1s
+    inset: 0;
+    border-radius: 22px;
   }
+
   .card {
-    width: 1065px; height: 1477px;
-    background-image: url(PokePharm.webp);
+    background-image: url("./PokePharm.webp");
     background-size: cover;
+    background-position: center;
+    z-index: 1;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  }
+
+  .overlay {
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(255, 219, 112, 0.75) 45%,
+      rgba(132, 50, 255, 0.65) 50%,
+      rgba(96, 220, 255, 0.55) 55%,
+      transparent 65%
+    );
+    background-size: 200% 200%;
+    mix-blend-mode: color-dodge;
+    filter: brightness(1.2) saturate(1.4);
+    transition: opacity 0.2s ease;
   }
 </style>
