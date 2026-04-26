@@ -366,6 +366,9 @@
       const percentX = x / rect.width;
       const percentY = y / rect.height;
 
+      const shineX = Math.max(0, Math.min(1, percentX));
+      const shineY = Math.max(0, Math.min(1, percentY));
+
       const rotateY = 15 - percentX * 30;
       const rotateX = percentY * 30 - 15;
 
@@ -387,7 +390,7 @@
 
       if (!container.classList.contains("is-flipped")) {
         shine.style.opacity = "0.85";
-        shine.style.backgroundPosition = `${percentX * 100}% ${percentY * 100}%`;
+        shine.style.backgroundPosition = `${shineX * 100}% ${shineY * 100}%`;
       } else {
         shine.style.opacity = "0";
       }
