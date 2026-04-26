@@ -187,30 +187,13 @@
       pointer-events: none;
       z-index: 1;
 
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(74, 22, 31, 0.46) 0px,
-          rgba(74, 22, 31, 0.46) 2.8px,
-          transparent 3.4px
-        ),
-        radial-gradient(
-          circle at center,
-          rgba(104, 37, 47, 0.28) 0px,
-          rgba(104, 37, 47, 0.28) 2.8px,
-          transparent 3.4px
-        );
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1.2 0 0 0 0  0 0.7 0 0 0  0 0 0.7 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.55'/%3E%3C/svg%3E");
 
-      background-size:
-        34px 34px,
-        34px 34px;
-
-      background-position:
-        0px 0px,
-        17px 17px;
-
-      opacity: 0.82;
+      background-size: 140px 140px;
+      opacity: 0.42;
       mix-blend-mode: soft-light;
+      filter: contrast(1.25) saturate(1.15);
+
       transform: translate(var(--texture-x), var(--texture-y));
       transition: transform 0.12s ease;
     }
