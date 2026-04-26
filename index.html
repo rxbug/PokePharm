@@ -183,45 +183,43 @@
     .back-cavity::before {
       content: "";
       position: absolute;
-      inset: -44px;
+      inset: -36px;
       pointer-events: none;
       z-index: 1;
 
       background:
         radial-gradient(
-          circle at 14px 18px,
-          rgba(255, 255, 255, 0.035) 0px,
-          rgba(255, 255, 255, 0.035) 0.8px,
-          transparent 1.1px
+          circle at 12px 18px,
+          rgba(95, 31, 40, 0.38) 0px,
+          rgba(95, 31, 40, 0.38) 1.1px,
+          transparent 1.6px
         ),
         radial-gradient(
-          circle at 38px 42px,
-          rgba(64, 18, 26, 0.13) 0px,
-          rgba(64, 18, 26, 0.13) 1px,
+          circle at 31px 9px,
+          rgba(255, 255, 255, 0.045) 0px,
+          rgba(255, 255, 255, 0.045) 0.9px,
           transparent 1.4px
         ),
-        repeating-linear-gradient(
-          7deg,
-          rgba(255, 255, 255, 0.025) 0px,
-          rgba(255, 255, 255, 0.025) 1px,
-          transparent 1px,
-          transparent 7px
+        radial-gradient(
+          circle at 21px 34px,
+          rgba(75, 22, 31, 0.32) 0px,
+          rgba(75, 22, 31, 0.32) 1.2px,
+          transparent 1.8px
         ),
-        repeating-linear-gradient(
-          96deg,
-          rgba(62, 18, 27, 0.09) 0px,
-          rgba(62, 18, 27, 0.09) 1px,
-          transparent 1px,
-          transparent 9px
+        radial-gradient(
+          circle at 45px 27px,
+          rgba(255, 255, 255, 0.035) 0px,
+          rgba(255, 255, 255, 0.035) 0.8px,
+          transparent 1.3px
         );
 
       background-size:
-        23px 23px,
-        31px 31px,
-        100% 100%,
-        100% 100%;
+        38px 38px,
+        46px 46px,
+        52px 52px,
+        64px 64px;
 
-      opacity: 0.72;
+      opacity: 0.7;
       mix-blend-mode: soft-light;
       transform: translate(var(--texture-x), var(--texture-y));
       transition: transform 0.12s ease;
@@ -237,9 +235,9 @@
       background:
         radial-gradient(
           ellipse at center,
-          rgba(255, 255, 255, 0.03) 0%,
-          transparent 58%,
-          rgba(64, 18, 26, 0.16) 100%
+          rgba(255, 255, 255, 0.028) 0%,
+          transparent 55%,
+          rgba(64, 18, 26, 0.14) 100%
         );
     }
 
