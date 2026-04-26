@@ -186,7 +186,7 @@
 
     .cavity-texture {
       position: absolute;
-      inset: -24px;
+      inset: -48px;
       pointer-events: none;
       z-index: 1;
 
@@ -195,6 +195,7 @@
       background-size: 90px 90px;
       opacity: 0.75;
       mix-blend-mode: soft-light;
+      filter: contrast(1.7) saturate(1.2);
 
       transform: translate(var(--texture-x), var(--texture-y));
       transition: transform 0.12s ease;
@@ -372,8 +373,8 @@
       physicalCard.style.setProperty("--tilt-y", `${rotateY}deg`);
       physicalCard.style.setProperty("--scale", "1.03");
 
-      const textureX = Math.round(-rotateY * 0.18);
-      const textureY = Math.round(rotateX * 0.18);
+      const textureX = Math.round(-rotateY * 0.45);
+      const textureY = Math.round(rotateX * 0.45);
 
       backCavity.style.setProperty("--texture-x", `${textureX}px`);
       backCavity.style.setProperty("--texture-y", `${textureY}px`);
