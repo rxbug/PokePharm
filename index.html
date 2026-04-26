@@ -131,6 +131,46 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      transform-style: preserve-3d;
+    }
+
+    .card-back::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 22px;
+      pointer-events: none;
+      z-index: 5;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.08),
+          transparent 36%,
+          rgba(0, 0, 0, 0.08)
+        );
+
+      box-shadow:
+        inset 0 0 35px rgba(255, 255, 255, 0.05),
+        inset 0 0 55px rgba(0, 0, 0, 0.18);
+    }
+
+    .back-depth {
+      --depth-x: 0px;
+      --depth-y: 0px;
+
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      transform: translate3d(var(--depth-x), var(--depth-y), 45px);
+      transition: transform 0.12s ease;
+      pointer-events: auto;
     }
 
     .back-logo {
@@ -144,12 +184,13 @@
       font-size: clamp(1.5rem, 4vw, 2.3rem);
       font-weight: 400;
       letter-spacing: 0.05em;
+
+      text-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.35),
+        0 0 18px rgba(255, 255, 255, 0.12);
     }
 
     .contact-list {
-      position: relative;
-      z-index: 3;
-
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -162,6 +203,10 @@
       font-size: clamp(1.25rem, 4vw, 2rem);
       font-weight: 400;
       letter-spacing: 0.06em;
+
+      text-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.35),
+        0 0 14px rgba(255, 255, 255, 0.1);
     }
 
     .contact-list a:hover {
@@ -197,7 +242,7 @@
 
       position: absolute;
       inset: 0;
-      z-index: 2;
+      z-index: 4;
       pointer-events: none;
       opacity: 0;
       border-radius: 22px;
@@ -225,11 +270,13 @@
         </div>
 
         <div class="card-face card-back">
-          <div class="back-logo">Join PokéPharm!</div>
+          <div class="back-depth">
+            <div class="back-logo">Join PokéPharm!</div>
 
-          <div class="contact-list">
-            <a href="#">Instagram</a>
-            <a href="#">Contact</a>
+            <div class="contact-list">
+              <a href="#">Instagram</a>
+              <a href="#">Contact</a>
+            </div>
           </div>
 
           <div class="cursor-light"></div>
@@ -243,6 +290,7 @@
     const physicalCard = document.querySelector(".physical-card");
     const shine = document.querySelector(".shine");
     const cursorLights = document.querySelectorAll(".cursor-light");
+    const backDepth = document.querySelector(".back-depth");
 
     let isHovering = false;
 
@@ -264,6 +312,9 @@
       physicalCard.style.setProperty("--tilt-y", `${rotateY}deg`);
       physicalCard.style.setProperty("--scale", "1.03");
 
+      backDepth.style.setProperty("--depth-x", `${(0.5 - percentX) * 18}px`);
+      backDepth.style.setProperty("--depth-y", `${(0.5 - percentY) * 18}px`);
+
       cursorLights.forEach((light) => {
         light.style.setProperty("--x", `${percentX * 100}%`);
         light.style.setProperty("--y", `${percentY * 100}%`);
@@ -284,6 +335,9 @@
       physicalCard.style.setProperty("--tilt-x", "0deg");
       physicalCard.style.setProperty("--tilt-y", "0deg");
       physicalCard.style.setProperty("--scale", "1");
+
+      backDepth.style.setProperty("--depth-x", "0px");
+      backDepth.style.setProperty("--depth-y", "0px");
 
       shine.style.opacity = "0";
 
