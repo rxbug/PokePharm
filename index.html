@@ -50,17 +50,50 @@
 
   body {
     margin: 0;
-    background: #111;
     overflow: hidden;
     font-family: Arial, sans-serif;
+  
+    background:
+      radial-gradient(circle at center, rgba(30, 90, 80, 0.55), transparent 55%),
+      radial-gradient(circle at top, rgba(40, 120, 105, 0.35), transparent 45%),
+      linear-gradient(135deg, #062b28 0%, #0b3a34 45%, #041b1a 100%);
   }
 
+  body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.025) 0px,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0, 0, 0, 0.035) 0px,
+      rgba(0, 0, 0, 0.035) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+
+  opacity: 0.65;
+  mix-blend-mode: soft-light;
+}
+  
   .page {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 24px;
+    position: relative;
+    z-index: 1;
   }
 
   .container {
