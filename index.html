@@ -1,29 +1,36 @@
 <div class="page">
-  <h1 class="site-title">PokéPharm</h1>
-
   <div class="container">
-    <div class="card-inner">
-      <div class="card-face card-front"></div>
+    <div class="physical-card">
+      <div class="card-face card-front">
+        <div class="shine"></div>
+        <div class="cursor-light"></div>
+      </div>
 
       <div class="card-face card-back">
+        <div class="back-logo">Join PokéPharm!</div>
+
         <div class="contact-list">
           <a href="#">Instagram</a>
           <a href="#">Contact</a>
         </div>
+
+        <div class="cursor-light"></div>
       </div>
     </div>
-
-    <div class="shine"></div>
-    <div class="cursor-light"></div>
   </div>
 </div>
 
 <script>
   const container = document.querySelector(".container");
+  const physicalCard = document.querySelector(".physical-card");
   const shine = document.querySelector(".shine");
-  const cursorLight = document.querySelector(".cursor-light");
+  const cursorLights = document.querySelectorAll(".cursor-light");
 
-  container.addEventListener("mousemove", function (e) {
+  let isHovering = false;
+
+  container.addEventListener("pointermove", function (e) {
+    isHovering = true;
+
     const rect = container.getBoundingClientRect();
 
     const x = e.clientX - rect.left;
@@ -32,43 +39,58 @@
     const percentX = x / rect.width;
     const percentY = y / rect.height;
 
-    cursorLight.style.setProperty("--x", `${percentX * 100}%`);
-    cursorLight.style.setProperty("--y", `${percentY * 100}%`);
-
     const rotateY = 15 - percentX * 30;
     const rotateX = percentY * 30 - 15;
 
-    shine.style.opacity = "0.85";
-    cursorLight.style.opacity = "0.55";
+    physicalCard.style.setProperty("--tilt-x", `${rotateX}deg`);
+    physicalCard.style.setProperty("--tilt-y", `${rotateY}deg`);
+    physicalCard.style.setProperty("--scale", "1.03");
 
-    shine.style.backgroundPosition = `${percentX * 100}% ${percentY * 100}%`;
+    cursorLights.forEach((light) => {
+      light.style.setProperty("--x", `${percentX * 100}%`);
+      light.style.setProperty("--y", `${percentY * 100}%`);
+      light.style.opacity = "0.55";
+    });
 
-    container.style.transform = `
-      perspective(1000px)
-      rotateX(${rotateX}deg)
-      rotateY(${rotateY}deg)
-      scale(1.03)
-    `;
+    if (!container.classList.contains("is-flipped")) {
+      shine.style.opacity = "0.85";
+      shine.style.backgroundPosition = `${percentX * 100}% ${percentY * 100}%`;
+    } else {
+      shine.style.opacity = "0";
+    }
   });
 
-  container.addEventListener("mouseleave", function () {
+  container.addEventListener("pointerleave", function () {
+    isHovering = false;
+
+    physicalCard.style.setProperty("--tilt-x", "0deg");
+    physicalCard.style.setProperty("--tilt-y", "0deg");
+    physicalCard.style.setProperty("--scale", "1");
+
     shine.style.opacity = "0";
-    cursorLight.style.opacity = "0";
 
-    cursorLight.style.setProperty("--x", "50%");
-    cursorLight.style.setProperty("--y", "50%");
-
-    container.style.transform = `
-      perspective(1000px)
-      rotateX(0deg)
-      rotateY(0deg)
-      scale(1)
-    `;
+    cursorLights.forEach((light) => {
+      light.style.opacity = "0";
+      light.style.setProperty("--x", "50%");
+      light.style.setProperty("--y", "50%");
+    });
   });
 
   container.addEventListener("click", function (e) {
     if (e.target.closest("a")) return;
+
+    container.classList.add("is-animating");
     container.classList.toggle("is-flipped");
+
+    if (container.classList.contains("is-flipped")) {
+      shine.style.opacity = "0";
+    } else if (isHovering) {
+      shine.style.opacity = "0.85";
+    }
+
+    setTimeout(() => {
+      container.classList.remove("is-animating");
+    }, 750);
   });
 </script>
 
@@ -115,60 +137,55 @@
     min-height: 100vh;
     min-height: 100dvh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 18px;
     padding: 24px;
     position: relative;
     z-index: 1;
   }
 
-  .site-title {
-    margin: 0;
-    color: rgba(4, 16, 28, 0.95);
-    font-size: clamp(1.35rem, 3vw, 2.2rem);
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    text-shadow:
-      0 1px 1px rgba(255, 255, 255, 0.12),
-      0 -1px 1px rgba(0, 0, 0, 0.75);
-  }
-
   .container {
-    width: min(84vw, calc((100vh - 130px) * 1065 / 1477), 390px);
+    width: min(88vw, calc(88vh * 1065 / 1477), 420px);
     aspect-ratio: 1065 / 1477;
     position: relative;
-    transition: transform 0.12s ease;
-    transform-style: preserve-3d;
-    isolation: isolate;
     cursor: pointer;
+    perspective: 1000px;
   }
 
-  .card-inner {
+  .physical-card {
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    --flip-y: 0deg;
+    --scale: 1;
+
     position: absolute;
     inset: 0;
-    z-index: 1;
     border-radius: 22px;
     transform-style: preserve-3d;
-    transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    transform:
+      rotateX(var(--tilt-x))
+      rotateY(calc(var(--flip-y) + var(--tilt-y)))
+      scale(var(--scale));
+
+    transition: transform 0.12s ease;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
   }
 
-  .container.is-flipped .card-inner {
-    transform: rotateY(180deg);
+  .container.is-flipped .physical-card {
+    --flip-y: 180deg;
   }
 
-  .card-face,
-  .shine,
-  .cursor-light {
-    position: absolute;
-    inset: 0;
-    border-radius: 22px;
+  .container.is-animating .physical-card {
+    transition: transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 
   .card-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
     overflow: hidden;
+
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
@@ -177,19 +194,35 @@
     background-image: url("./PokePharm.webp");
     background-size: cover;
     background-position: center;
+    transform: translateZ(1px);
   }
 
   .card-back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(1px);
     background:
-      radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 42%),
-      linear-gradient(145deg, #9f3b3f 0%, #7e292f 55%, #5f1d24 100%);
+      linear-gradient(145deg, #9f3b3f 0%, #7d2c32 52%, #68242b 100%);
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
+  .back-logo {
+    position: absolute;
+    top: 42px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+
+    color: white;
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
   .contact-list {
+    position: relative;
+    z-index: 3;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -209,9 +242,12 @@
   }
 
   .shine {
+    position: absolute;
+    inset: 0;
     z-index: 2;
     pointer-events: none;
     opacity: 0;
+    border-radius: 22px;
 
     background: linear-gradient(
       105deg,
@@ -232,9 +268,12 @@
     --x: 50%;
     --y: 50%;
 
-    z-index: 3;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
     pointer-events: none;
     opacity: 0;
+    border-radius: 22px;
 
     background: radial-gradient(
       circle at var(--x) var(--y),
