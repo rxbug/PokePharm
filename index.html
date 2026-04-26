@@ -20,11 +20,14 @@
     const percentX = x / rect.width;
     const percentY = y / rect.height;
 
+    overlay.style.setProperty("--x", `${percentX * 100}%`);
+    overlay.style.setProperty("--y", `${percentY * 100}%`);
+
     const rotateY = 15 - percentX * 30;
-    const rotateX = percentY * 30 - 15; 
+    const rotateX = percentY * 30 - 15;
 
     overlay.style.opacity = "0.85";
-    overlay.style.backgroundPosition = `${percentX * 100}% ${percentY * 100}%`;
+    overlay.style.backgroundPosition = `center, ${percentX * 100}% ${percentY * 100}%`;
 
     container.style.transform = `
       perspective(1000px)
@@ -36,6 +39,10 @@
 
   container.addEventListener("mouseleave", function () {
     overlay.style.opacity = "0";
+
+    overlay.style.setProperty("--x", "50%");
+    overlay.style.setProperty("--y", "50%");
+
     container.style.transform = `
       perspective(1000px)
       rotateX(0deg)
@@ -54,7 +61,7 @@
     margin: 0;
     overflow: hidden;
     font-family: Arial, sans-serif;
-  
+
     background:
       radial-gradient(circle at center, rgba(35, 70, 105, 0.28), transparent 58%),
       linear-gradient(135deg, #071622 0%, #0b2030 50%, #081722 100%);
@@ -66,7 +73,7 @@
     inset: 0;
     pointer-events: none;
     z-index: 0;
-  
+
     background:
       repeating-linear-gradient(
         45deg,
@@ -82,11 +89,11 @@
         transparent 1px,
         transparent 7px
       );
-  
+
     opacity: 0.35;
     mix-blend-mode: soft-light;
   }
-  
+
   .page {
     min-height: 100vh;
     min-height: 100dvh;
@@ -101,16 +108,16 @@
   }
 
   .site-title {
-  margin: 0;
-  color: rgba(235, 245, 255, 0.92);
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.55),
-    0 0 24px rgba(90, 150, 220, 0.28);
-}
-  
+    margin: 0;
+    color: rgba(235, 245, 255, 0.92);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.55),
+      0 0 24px rgba(90, 150, 220, 0.28);
+  }
+
   .container {
     width: min(84vw, calc((100vh - 130px) * 1065 / 1477), 390px);
     aspect-ratio: 1065 / 1477;
@@ -135,18 +142,31 @@
   }
 
   .overlay {
+    --x: 50%;
+    --y: 50%;
+
     z-index: 2;
     pointer-events: none;
     opacity: 0;
-    background: linear-gradient(
-      105deg,
-      transparent 35%,
-      rgba(255, 219, 112, 0.75) 45%,
-      rgba(132, 50, 255, 0.65) 50%,
-      rgba(96, 220, 255, 0.55) 55%,
-      transparent 65%
-    );
-    background-size: 200% 200%;
+
+    background:
+      radial-gradient(
+        circle at var(--x) var(--y),
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(140, 210, 255, 0.28) 18%,
+        transparent 38%
+      ),
+      linear-gradient(
+        105deg,
+        transparent 35%,
+        rgba(255, 219, 112, 0.7) 45%,
+        rgba(132, 50, 255, 0.58) 50%,
+        rgba(96, 220, 255, 0.5) 55%,
+        transparent 65%
+      );
+
+    background-size: 100% 100%, 200% 200%;
+    background-position: center, 100% 100%;
     mix-blend-mode: color-dodge;
     filter: brightness(1.2) saturate(1.4);
     transition: opacity 0.2s ease;
