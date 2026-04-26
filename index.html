@@ -171,16 +171,26 @@
 
       background:
         radial-gradient(
+          circle at 25% 22%,
+          rgba(38, 92, 170, 0.18) 0%,
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 76% 70%,
+          rgba(155, 35, 78, 0.14) 0%,
+          transparent 36%
+        ),
+        radial-gradient(
           ellipse at center,
-          #0b1430 0%,
-          #050814 48%,
-          #02030a 100%
+          #050814 0%,
+          #02030a 48%,
+          #000104 100%
         );
 
       box-shadow:
-        inset 0 18px 28px rgba(0, 0, 0, 0.5),
-        inset 0 -10px 22px rgba(85, 115, 180, 0.08),
-        inset 0 0 28px rgba(8, 14, 38, 0.8);
+        inset 0 18px 30px rgba(0, 0, 0, 0.62),
+        inset 0 -10px 22px rgba(90, 120, 180, 0.06),
+        inset 0 0 34px rgba(0, 0, 0, 0.86);
     }
 
     .cavity-space {
@@ -191,40 +201,23 @@
 
       background:
         radial-gradient(
-          circle at 18% 24%,
-          rgba(47, 120, 255, 0.42) 0%,
-          rgba(47, 120, 255, 0.16) 13%,
-          transparent 31%
+          circle at 18% 28%,
+          rgba(40, 100, 210, 0.16) 0%,
+          transparent 30%
         ),
         radial-gradient(
-          circle at 78% 34%,
-          rgba(200, 36, 110, 0.34) 0%,
-          rgba(200, 36, 110, 0.14) 15%,
+          circle at 82% 38%,
+          rgba(180, 35, 88, 0.12) 0%,
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 50% 78%,
+          rgba(80, 45, 170, 0.13) 0%,
           transparent 34%
-        ),
-        radial-gradient(
-          circle at 52% 78%,
-          rgba(89, 38, 190, 0.42) 0%,
-          rgba(89, 38, 190, 0.16) 18%,
-          transparent 38%
-        ),
-        radial-gradient(
-          circle at 28% 72%,
-          rgba(20, 205, 255, 0.22) 0%,
-          transparent 28%
-        ),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.58' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.7 0 0 0 0  0 0.75 0 0 0  0 0 1.4 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.7'/%3E%3C/svg%3E");
+        );
 
-      background-size:
-        100% 100%,
-        100% 100%,
-        100% 100%,
-        100% 100%,
-        120px 120px;
-
-      opacity: 0.9;
+      opacity: 0.8;
       mix-blend-mode: screen;
-      filter: contrast(1.25) saturate(1.25);
 
       transform: translate3d(var(--texture-x), var(--texture-y), 0);
       will-change: transform;
@@ -237,20 +230,30 @@
       z-index: 2;
 
       background:
-        radial-gradient(circle at 8% 13%, rgba(255,255,255,0.85) 0px, rgba(255,255,255,0.85) 0.9px, transparent 1.5px),
-        radial-gradient(circle at 18% 47%, rgba(255,255,255,0.75) 0px, rgba(255,255,255,0.75) 1.2px, transparent 1.9px),
-        radial-gradient(circle at 29% 22%, rgba(180,215,255,0.8) 0px, rgba(180,215,255,0.8) 1.4px, transparent 2.1px),
-        radial-gradient(circle at 41% 68%, rgba(255,255,255,0.85) 0px, rgba(255,255,255,0.85) 0.8px, transparent 1.4px),
-        radial-gradient(circle at 55% 31%, rgba(255,210,235,0.8) 0px, rgba(255,210,235,0.8) 1.1px, transparent 1.8px),
-        radial-gradient(circle at 68% 76%, rgba(210,235,255,0.9) 0px, rgba(210,235,255,0.9) 1.6px, transparent 2.4px),
-        radial-gradient(circle at 79% 18%, rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.8) 1px, transparent 1.7px),
-        radial-gradient(circle at 88% 55%, rgba(180,220,255,0.75) 0px, rgba(180,220,255,0.75) 1.3px, transparent 2px),
-        radial-gradient(circle at 13% 82%, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0.7) 0.7px, transparent 1.3px),
-        radial-gradient(circle at 36% 91%, rgba(255,210,235,0.75) 0px, rgba(255,210,235,0.75) 1.2px, transparent 1.9px),
-        radial-gradient(circle at 61% 9%, rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.8) 0.8px, transparent 1.5px),
-        radial-gradient(circle at 93% 86%, rgba(255,255,255,0.85) 0px, rgba(255,255,255,0.85) 1.1px, transparent 1.8px);
+        radial-gradient(circle at 6% 9%, rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.8) 0.7px, transparent 1.3px),
+        radial-gradient(circle at 10% 28%, rgba(210,230,255,0.75) 0px, rgba(210,230,255,0.75) 1px, transparent 1.7px),
+        radial-gradient(circle at 14% 61%, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0.7) 0.8px, transparent 1.4px),
+        radial-gradient(circle at 18% 82%, rgba(255,255,255,0.85) 0px, rgba(255,255,255,0.85) 1.2px, transparent 2px),
+        radial-gradient(circle at 23% 17%, rgba(255,220,235,0.75) 0px, rgba(255,220,235,0.75) 0.9px, transparent 1.5px),
+        radial-gradient(circle at 27% 44%, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0.7) 0.6px, transparent 1.2px),
+        radial-gradient(circle at 31% 72%, rgba(190,220,255,0.85) 0px, rgba(190,220,255,0.85) 1.4px, transparent 2.2px),
+        radial-gradient(circle at 36% 10%, rgba(255,255,255,0.75) 0px, rgba(255,255,255,0.75) 0.8px, transparent 1.4px),
+        radial-gradient(circle at 39% 35%, rgba(255,255,255,0.9) 0px, rgba(255,255,255,0.9) 1.1px, transparent 1.8px),
+        radial-gradient(circle at 43% 89%, rgba(210,235,255,0.7) 0px, rgba(210,235,255,0.7) 0.7px, transparent 1.3px),
+        radial-gradient(circle at 48% 22%, rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.8) 0.9px, transparent 1.5px),
+        radial-gradient(circle at 52% 57%, rgba(255,215,235,0.75) 0px, rgba(255,215,235,0.75) 1.1px, transparent 1.8px),
+        radial-gradient(circle at 57% 76%, rgba(255,255,255,0.75) 0px, rgba(255,255,255,0.75) 0.8px, transparent 1.4px),
+        radial-gradient(circle at 61% 12%, rgba(190,220,255,0.9) 0px, rgba(190,220,255,0.9) 1.5px, transparent 2.3px),
+        radial-gradient(circle at 65% 39%, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0.7) 0.7px, transparent 1.3px),
+        radial-gradient(circle at 69% 91%, rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.8) 1px, transparent 1.7px),
+        radial-gradient(circle at 73% 24%, rgba(255,220,235,0.8) 0px, rgba(255,220,235,0.8) 0.9px, transparent 1.5px),
+        radial-gradient(circle at 77% 66%, rgba(210,235,255,0.85) 0px, rgba(210,235,255,0.85) 1.3px, transparent 2.1px),
+        radial-gradient(circle at 82% 8%, rgba(255,255,255,0.75) 0px, rgba(255,255,255,0.75) 0.8px, transparent 1.4px),
+        radial-gradient(circle at 86% 47%, rgba(255,255,255,0.9) 0px, rgba(255,255,255,0.9) 1.2px, transparent 1.9px),
+        radial-gradient(circle at 91% 79%, rgba(200,230,255,0.75) 0px, rgba(200,230,255,0.75) 0.9px, transparent 1.5px),
+        radial-gradient(circle at 96% 31%, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0.7) 0.7px, transparent 1.3px);
 
-      opacity: 0.85;
+      opacity: 0.92;
       mix-blend-mode: screen;
 
       transform: translate3d(var(--texture-x), var(--texture-y), 0);
@@ -267,15 +270,15 @@
       background:
         radial-gradient(
           ellipse at center,
-          rgba(255, 255, 255, 0.035) 0%,
+          rgba(255, 255, 255, 0.025) 0%,
           transparent 48%,
-          rgba(0, 0, 0, 0.36) 100%
+          rgba(0, 0, 0, 0.42) 100%
         ),
         linear-gradient(
           145deg,
-          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.025),
           transparent 45%,
-          rgba(0, 0, 0, 0.18)
+          rgba(0, 0, 0, 0.22)
         );
     }
 
@@ -441,8 +444,8 @@
       physicalCard.style.setProperty("--tilt-y", `${rotateY}deg`);
       physicalCard.style.setProperty("--scale", "1.03");
 
-      const textureX = (-rotateY * 0.99).toFixed(2);
-      const textureY = (rotateX * 0.99).toFixed(2);
+      const textureX = (-rotateY * 0.7).toFixed(2);
+      const textureY = (rotateX * 0.7).toFixed(2);
 
       backCavity.style.setProperty("--texture-x", `${textureX}px`);
       backCavity.style.setProperty("--texture-y", `${textureY}px`);
