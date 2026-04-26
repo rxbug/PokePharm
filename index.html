@@ -165,6 +165,10 @@
       overflow: hidden;
       z-index: 2;
 
+      clip-path: inset(0 round 15px);
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      transform: translateZ(0);
+
       background:
         radial-gradient(
           ellipse at center,
@@ -180,10 +184,9 @@
         inset 0 0 20px rgba(64, 18, 26, 0.18);
     }
 
-    .back-cavity::before {
-      content: "";
+    .cavity-texture {
       position: absolute;
-      inset: -48px;
+      inset: -24px;
       pointer-events: none;
       z-index: 1;
 
@@ -192,7 +195,6 @@
       background-size: 90px 90px;
       opacity: 0.75;
       mix-blend-mode: soft-light;
-      filter: contrast(1.7) saturate(1.2);
 
       transform: translate(var(--texture-x), var(--texture-y));
       transition: transform 0.12s ease;
@@ -324,7 +326,9 @@
         </div>
 
         <div class="card-face card-back">
-          <div class="back-cavity"></div>
+          <div class="back-cavity">
+            <div class="cavity-texture"></div>
+          </div>
 
           <div class="back-text-layer">
             <div class="back-logo">Join PokéPharm!</div>
@@ -368,8 +372,8 @@
       physicalCard.style.setProperty("--tilt-y", `${rotateY}deg`);
       physicalCard.style.setProperty("--scale", "1.03");
 
-      const textureX = Math.round(-rotateY * 0.45);
-      const textureY = Math.round(rotateX * 0.45);
+      const textureX = Math.round(-rotateY * 0.18);
+      const textureY = Math.round(rotateX * 0.18);
 
       backCavity.style.setProperty("--texture-x", `${textureX}px`);
       backCavity.style.setProperty("--texture-y", `${textureY}px`);
