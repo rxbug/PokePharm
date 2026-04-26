@@ -2,14 +2,26 @@
   <h1 class="site-title">PokéPharm</h1>
 
   <div class="container">
-    <div class="card"></div>
-    <div class="overlay"></div>
+    <div class="card-inner">
+      <div class="card-face card-front"></div>
+
+      <div class="card-face card-back">
+        <div class="contact-list">
+          <a href="#">Instagram</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="shine"></div>
+    <div class="cursor-light"></div>
   </div>
 </div>
 
 <script>
   const container = document.querySelector(".container");
-  const overlay = document.querySelector(".overlay");
+  const shine = document.querySelector(".shine");
+  const cursorLight = document.querySelector(".cursor-light");
 
   container.addEventListener("mousemove", function (e) {
     const rect = container.getBoundingClientRect();
@@ -20,14 +32,16 @@
     const percentX = x / rect.width;
     const percentY = y / rect.height;
 
-    overlay.style.setProperty("--x", `${percentX * 100}%`);
-    overlay.style.setProperty("--y", `${percentY * 100}%`);
+    cursorLight.style.setProperty("--x", `${percentX * 100}%`);
+    cursorLight.style.setProperty("--y", `${percentY * 100}%`);
 
     const rotateY = 15 - percentX * 30;
     const rotateX = percentY * 30 - 15;
 
-    overlay.style.opacity = "0.85";
-    overlay.style.backgroundPosition = `center, ${percentX * 100}% ${percentY * 100}%`;
+    shine.style.opacity = "0.85";
+    cursorLight.style.opacity = "0.55";
+
+    shine.style.backgroundPosition = `${percentX * 100}% ${percentY * 100}%`;
 
     container.style.transform = `
       perspective(1000px)
@@ -38,10 +52,11 @@
   });
 
   container.addEventListener("mouseleave", function () {
-    overlay.style.opacity = "0";
+    shine.style.opacity = "0";
+    cursorLight.style.opacity = "0";
 
-    overlay.style.setProperty("--x", "50%");
-    overlay.style.setProperty("--y", "50%");
+    cursorLight.style.setProperty("--x", "50%");
+    cursorLight.style.setProperty("--y", "50%");
 
     container.style.transform = `
       perspective(1000px)
@@ -49,6 +64,11 @@
       rotateY(0deg)
       scale(1)
     `;
+  });
+
+  container.addEventListener("click", function (e) {
+    if (e.target.closest("a")) return;
+    container.classList.toggle("is-flipped");
   });
 </script>
 
@@ -61,10 +81,7 @@
     margin: 0;
     overflow: hidden;
     font-family: Arial, sans-serif;
-
-    background:
-      radial-gradient(circle at center, rgba(35, 70, 105, 0.28), transparent 58%),
-      linear-gradient(135deg, #071622 0%, #0b2030 50%, #081722 100%);
+    background: #071622;
   }
 
   body::before {
@@ -77,20 +94,20 @@
     background:
       repeating-linear-gradient(
         45deg,
-        rgba(255, 255, 255, 0.018) 0px,
-        rgba(255, 255, 255, 0.018) 1px,
+        rgba(255, 255, 255, 0.012) 0px,
+        rgba(255, 255, 255, 0.012) 1px,
         transparent 1px,
-        transparent 6px
+        transparent 7px
       ),
       repeating-linear-gradient(
         -45deg,
         rgba(0, 0, 0, 0.018) 0px,
         rgba(0, 0, 0, 0.018) 1px,
         transparent 1px,
-        transparent 7px
+        transparent 8px
       );
 
-    opacity: 0.35;
+    opacity: 0.25;
     mix-blend-mode: soft-light;
   }
 
@@ -101,7 +118,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 22px;
+    gap: 18px;
     padding: 24px;
     position: relative;
     z-index: 1;
@@ -109,13 +126,13 @@
 
   .site-title {
     margin: 0;
-    color: rgba(235, 245, 255, 0.92);
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 700;
-    letter-spacing: 0.04em;
+    color: rgba(4, 16, 28, 0.95);
+    font-size: clamp(1.35rem, 3vw, 2.2rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
     text-shadow:
-      0 2px 8px rgba(0, 0, 0, 0.55),
-      0 0 24px rgba(90, 150, 220, 0.28);
+      0 1px 1px rgba(255, 255, 255, 0.12),
+      0 -1px 1px rgba(0, 0, 0, 0.75);
   }
 
   .container {
@@ -124,51 +141,109 @@
     position: relative;
     transition: transform 0.12s ease;
     transform-style: preserve-3d;
+    isolation: isolate;
+    cursor: pointer;
   }
 
-  .card,
-  .overlay {
+  .card-inner {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: 22px;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  }
+
+  .container.is-flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-face,
+  .shine,
+  .cursor-light {
     position: absolute;
     inset: 0;
     border-radius: 22px;
   }
 
-  .card {
+  .card-face {
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .card-front {
     background-image: url("./PokePharm.webp");
     background-size: cover;
     background-position: center;
-    z-index: 1;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
   }
 
-  .overlay {
-    --x: 50%;
-    --y: 50%;
+  .card-back {
+    transform: rotateY(180deg);
+    background:
+      radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 42%),
+      linear-gradient(145deg, #9f3b3f 0%, #7e292f 55%, #5f1d24 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .contact-list a {
+    color: white;
+    text-decoration: none;
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+  }
+
+  .contact-list a:hover {
+    text-decoration: underline;
+  }
+
+  .shine {
     z-index: 2;
     pointer-events: none;
     opacity: 0;
 
-    background:
-      radial-gradient(
-        circle at var(--x) var(--y),
-        rgba(255, 255, 255, 0.5) 0%,
-        rgba(140, 210, 255, 0.28) 18%,
-        transparent 38%
-      ),
-      linear-gradient(
-        105deg,
-        transparent 35%,
-        rgba(255, 219, 112, 0.7) 45%,
-        rgba(132, 50, 255, 0.58) 50%,
-        rgba(96, 220, 255, 0.5) 55%,
-        transparent 65%
-      );
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(255, 219, 112, 0.7) 45%,
+      rgba(132, 50, 255, 0.58) 50%,
+      rgba(96, 220, 255, 0.5) 55%,
+      transparent 65%
+    );
 
-    background-size: 100% 100%, 200% 200%;
-    background-position: center, 100% 100%;
+    background-size: 200% 200%;
     mix-blend-mode: color-dodge;
     filter: brightness(1.2) saturate(1.4);
+    transition: opacity 0.2s ease;
+  }
+
+  .cursor-light {
+    --x: 50%;
+    --y: 50%;
+
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0;
+
+    background: radial-gradient(
+      circle at var(--x) var(--y),
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(140, 210, 255, 0.18) 18%,
+      transparent 38%
+    );
+
+    mix-blend-mode: screen;
     transition: opacity 0.2s ease;
   }
 </style>
