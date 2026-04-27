@@ -270,28 +270,28 @@
       text-decoration: underline;
     }
 
-  .shine {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    opacity: 0;
-    border-radius: 22px;
-  
-    background: linear-gradient(
-      105deg,
-      transparent 35%,
-      rgba(255, 219, 112, 0.7) 45%,
-      rgba(132, 50, 255, 0.58) 50%,
-      rgba(96, 220, 255, 0.25) 55%,
-      transparent 65%
-    );
-  
-    background-size: 200% 200%;
-    mix-blend-mode: color-dodge;
-    filter: brightness(1.2) saturate(1.4);
-    transition: opacity 0.2s ease;
-  }
+    .shine {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0;
+      border-radius: 22px;
+
+      background: linear-gradient(
+        105deg,
+        transparent 35%,
+        rgba(255, 219, 112, 0.7) 45%,
+        rgba(132, 50, 255, 0.58) 50%,
+        rgba(96, 220, 255, 0.5) 55%,
+        transparent 65%
+      );
+
+      background-size: 200% 200%;
+      mix-blend-mode: color-dodge;
+      filter: brightness(1.2) saturate(1.4);
+      transition: opacity 0.2s ease;
+    }
 
     .cursor-light {
       --x: 50%;
@@ -339,8 +339,6 @@
               <a href="#">Contact</a>
             </div>
           </div>
-
-          <div class="cursor-light"></div>
         </div>
       </div>
     </div>
@@ -385,7 +383,12 @@
       cursorLights.forEach((light) => {
         light.style.setProperty("--x", `${percentX * 100}%`);
         light.style.setProperty("--y", `${percentY * 100}%`);
-        light.style.opacity = "0.55";
+
+        if (!container.classList.contains("is-flipped")) {
+          light.style.opacity = "0.55";
+        } else {
+          light.style.opacity = "0";
+        }
       });
 
       if (!container.classList.contains("is-flipped")) {
