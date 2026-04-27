@@ -326,71 +326,6 @@
       opacity: 0.85;
     }
 
-    .cavity-stars-extra {
-      position: absolute;
-      inset: -44px;
-      pointer-events: none;
-      z-index: 1;
-      mix-blend-mode: screen;
-
-      background:
-        radial-gradient(circle at 2% 46%, rgba(255,255,255,0.34) 0px, rgba(255,255,255,0.34) 0.38px, transparent 0.9px),
-        radial-gradient(circle at 5% 72%, rgba(255,255,255,0.42) 0px, rgba(255,255,255,0.42) 0.45px, transparent 1px),
-        radial-gradient(circle at 12% 35%, rgba(255,255,255,0.36) 0px, rgba(255,255,255,0.36) 0.4px, transparent 0.95px),
-        radial-gradient(circle at 18% 5%, rgba(220,235,255,0.42) 0px, rgba(220,235,255,0.42) 0.45px, transparent 1px),
-        radial-gradient(circle at 22% 55%, rgba(255,255,255,0.32) 0px, rgba(255,255,255,0.32) 0.35px, transparent 0.9px),
-        radial-gradient(circle at 29% 90%, rgba(255,255,255,0.4) 0px, rgba(255,255,255,0.4) 0.45px, transparent 1px),
-        radial-gradient(circle at 34% 41%, rgba(255,255,255,0.36) 0px, rgba(255,255,255,0.36) 0.4px, transparent 0.95px),
-        radial-gradient(circle at 39% 11%, rgba(255,255,255,0.48) 0px, rgba(255,255,255,0.48) 0.5px, transparent 1.1px),
-        radial-gradient(circle at 43% 57%, rgba(220,235,255,0.38) 0px, rgba(220,235,255,0.38) 0.4px, transparent 0.95px),
-        radial-gradient(circle at 50% 83%, rgba(255,255,255,0.34) 0px, rgba(255,255,255,0.34) 0.38px, transparent 0.9px),
-        radial-gradient(circle at 56% 33%, rgba(255,255,255,0.42) 0px, rgba(255,255,255,0.42) 0.45px, transparent 1px),
-        radial-gradient(circle at 62% 59%, rgba(255,255,255,0.36) 0px, rgba(255,255,255,0.36) 0.4px, transparent 0.95px),
-        radial-gradient(circle at 67% 15%, rgba(220,235,255,0.4) 0px, rgba(220,235,255,0.4) 0.45px, transparent 1px),
-        radial-gradient(circle at 72% 96%, rgba(255,255,255,0.32) 0px, rgba(255,255,255,0.32) 0.35px, transparent 0.9px),
-        radial-gradient(circle at 79% 64%, rgba(255,255,255,0.44) 0px, rgba(255,255,255,0.44) 0.48px, transparent 1.05px),
-        radial-gradient(circle at 84% 26%, rgba(255,255,255,0.36) 0px, rgba(255,255,255,0.36) 0.4px, transparent 0.95px),
-        radial-gradient(circle at 90% 74%, rgba(220,235,255,0.42) 0px, rgba(220,235,255,0.42) 0.45px, transparent 1px),
-        radial-gradient(circle at 96% 18%, rgba(255,255,255,0.38) 0px, rgba(255,255,255,0.38) 0.4px, transparent 0.95px);
-
-      opacity: 0.72;
-      transform: translate(var(--texture-x), var(--texture-y));
-      transition: transform 0.12s ease;
-    }
-
-    .cavity-stars-deep {
-      position: absolute;
-      inset: -44px;
-      pointer-events: none;
-      z-index: 1;
-      mix-blend-mode: screen;
-
-      background:
-        radial-gradient(circle at 1% 9%, rgba(255,255,255,0.28) 0px, rgba(255,255,255,0.28) 0.32px, transparent 0.8px),
-        radial-gradient(circle at 4% 61%, rgba(255,255,255,0.26) 0px, rgba(255,255,255,0.26) 0.3px, transparent 0.8px),
-        radial-gradient(circle at 8% 84%, rgba(220,235,255,0.3) 0px, rgba(220,235,255,0.3) 0.34px, transparent 0.85px),
-        radial-gradient(circle at 13% 19%, rgba(255,255,255,0.24) 0px, rgba(255,255,255,0.24) 0.28px, transparent 0.75px),
-        radial-gradient(circle at 17% 73%, rgba(255,255,255,0.32) 0px, rgba(255,255,255,0.32) 0.36px, transparent 0.9px),
-        radial-gradient(circle at 25% 33%, rgba(255,255,255,0.28) 0px, rgba(255,255,255,0.28) 0.32px, transparent 0.8px),
-        radial-gradient(circle at 30% 5%, rgba(220,235,255,0.26) 0px, rgba(220,235,255,0.26) 0.3px, transparent 0.8px),
-        radial-gradient(circle at 37% 94%, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 0.34px, transparent 0.85px),
-        radial-gradient(circle at 41% 14%, rgba(255,255,255,0.24) 0px, rgba(255,255,255,0.24) 0.28px, transparent 0.75px),
-        radial-gradient(circle at 48% 51%, rgba(255,255,255,0.32) 0px, rgba(255,255,255,0.32) 0.36px, transparent 0.9px),
-        radial-gradient(circle at 53% 72%, rgba(220,235,255,0.28) 0px, rgba(220,235,255,0.28) 0.32px, transparent 0.8px),
-        radial-gradient(circle at 60% 12%, rgba(255,255,255,0.26) 0px, rgba(255,255,255,0.26) 0.3px, transparent 0.8px),
-        radial-gradient(circle at 65% 39%, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 0.34px, transparent 0.85px),
-        radial-gradient(circle at 70% 81%, rgba(255,255,255,0.24) 0px, rgba(255,255,255,0.24) 0.28px, transparent 0.75px),
-        radial-gradient(circle at 77% 19%, rgba(220,235,255,0.3) 0px, rgba(220,235,255,0.3) 0.34px, transparent 0.85px),
-        radial-gradient(circle at 82% 55%, rgba(255,255,255,0.28) 0px, rgba(255,255,255,0.28) 0.32px, transparent 0.8px),
-        radial-gradient(circle at 87% 96%, rgba(255,255,255,0.26) 0px, rgba(255,255,255,0.26) 0.3px, transparent 0.8px),
-        radial-gradient(circle at 93% 27%, rgba(255,255,255,0.32) 0px, rgba(255,255,255,0.32) 0.36px, transparent 0.9px),
-        radial-gradient(circle at 99% 66%, rgba(220,235,255,0.28) 0px, rgba(220,235,255,0.28) 0.32px, transparent 0.8px);
-
-      opacity: 0.62;
-      transform: translate(var(--texture-x), var(--texture-y));
-      transition: transform 0.12s ease;
-    }
-
     .back-cavity::after {
       content: "";
       position: absolute;
@@ -563,8 +498,6 @@
           <div class="back-cavity">
             <div class="cavity-texture"></div>
             <div class="cavity-stars"></div>
-            <div class="cavity-stars-extra"></div>
-            <div class="cavity-stars-deep"></div>
           </div>
 
           <div class="back-border-reflection"></div>
