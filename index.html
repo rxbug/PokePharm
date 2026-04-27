@@ -127,18 +127,7 @@
 
     .card-back {
       transform: rotateY(180deg) translateZ(1px);
-
-      background:
-        linear-gradient(
-          145deg,
-          #f5f5f2 0%,
-          #aeb4bd 18%,
-          #ffffff 34%,
-          #777f8b 52%,
-          #d9dad6 72%,
-          #626b77 100%
-        );
-
+      background: linear-gradient(145deg, #9f3b3f 0%, #7d2c32 52%, #68242b 100%);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -151,62 +140,24 @@
       inset: 0;
       border-radius: 22px;
       pointer-events: none;
-      z-index: 1;
+      z-index: 5;
 
       background:
         linear-gradient(
-          115deg,
-          rgba(255, 255, 255, 0.28) 0%,
-          transparent 28%,
-          rgba(255, 255, 255, 0.18) 42%,
-          transparent 58%,
-          rgba(0, 0, 0, 0.16) 100%
+          145deg,
+          rgba(255, 255, 255, 0.04),
+          transparent 45%,
+          rgba(0, 0, 0, 0.04)
         );
 
       box-shadow:
-        inset 0 0 18px rgba(255, 255, 255, 0.18),
-        inset 0 0 34px rgba(0, 0, 0, 0.16);
-    }
-
-    .back-border-holo {
-      position: absolute;
-      inset: 0;
-      padding: 20px 18px;
-      border-radius: 22px;
-      pointer-events: none;
-      z-index: 4;
-
-      background: linear-gradient(
-        105deg,
-        transparent 34%,
-        rgba(255, 255, 255, 0.28) 42%,
-        rgba(140, 210, 255, 0.28) 48%,
-        rgba(255, 140, 220, 0.22) 54%,
-        transparent 66%
-      );
-
-      background-size: 200% 200%;
-      background-position: 50% 50%;
-      mix-blend-mode: screen;
-      opacity: 0.42;
-      filter: brightness(1.1) saturate(1.25);
-
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-
-      mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      mask-composite: exclude;
+        inset 0 0 18px rgba(255, 255, 255, 0.025),
+        inset 0 0 28px rgba(0, 0, 0, 0.06);
     }
 
     .back-cavity {
-      --space-x: 0px;
-      --space-y: 0px;
-      --stars-x: 0px;
-      --stars-y: 0px;
+      --texture-x: 0px;
+      --texture-y: 0px;
 
       position: absolute;
       inset: 20px 18px;
@@ -220,93 +171,34 @@
 
       background:
         radial-gradient(
-          circle at 25% 22%,
-          rgba(38, 92, 170, 0.16) 0%,
-          transparent 34%
-        ),
-        radial-gradient(
-          circle at 76% 70%,
-          rgba(155, 35, 78, 0.12) 0%,
-          transparent 36%
-        ),
-        radial-gradient(
           ellipse at center,
-          #040713 0%,
-          #010208 52%,
-          #000000 100%
+          #84333a 0%,
+          #7a2f37 44%,
+          #6d2932 72%,
+          #5f232c 100%
         );
 
       box-shadow:
-        inset 0 18px 30px rgba(0, 0, 0, 0.66),
-        inset 0 -10px 22px rgba(90, 120, 180, 0.06),
-        inset 0 0 36px rgba(0, 0, 0, 0.9);
+        inset 0 14px 22px rgba(66, 18, 27, 0.26),
+        inset 0 -10px 18px rgba(255, 255, 255, 0.035),
+        inset 0 0 20px rgba(64, 18, 26, 0.18);
     }
 
-    .cavity-space {
+    .cavity-texture {
       position: absolute;
-      inset: -56px;
+      inset: -48px;
       pointer-events: none;
       z-index: 1;
 
-      background:
-        radial-gradient(
-          circle at 18% 28%,
-          rgba(40, 100, 210, 0.11) 0%,
-          transparent 31%
-        ),
-        radial-gradient(
-          circle at 82% 38%,
-          rgba(180, 35, 88, 0.08) 0%,
-          transparent 33%
-        ),
-        radial-gradient(
-          circle at 50% 78%,
-          rgba(80, 45, 170, 0.08) 0%,
-          transparent 34%
-        );
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1.2 0 0 0 0  0 0.7 0 0 0  0 0 0.7 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.55'/%3E%3C/svg%3E");
 
-      opacity: 0.78;
-      mix-blend-mode: screen;
+      background-size: 90px 90px;
+      opacity: 0.75;
+      mix-blend-mode: soft-light;
+      filter: contrast(1.7) saturate(1.2);
 
-      transform: translate3d(var(--space-x), var(--space-y), 0);
-      will-change: transform;
-    }
-
-    .cavity-stars {
-      position: absolute;
-      inset: -56px;
-      pointer-events: none;
-      z-index: 2;
-
-      background:
-        radial-gradient(circle at 6% 9%, rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.8) 0.7px, transparent 1.3px),
-        radial-gradient(circle at 10% 28%, rgba(210,230,255,0.75) 0px, rgba(210,230,255,0.75) 1px, transparent 1.7px),
-        radial-gradient(circle at 14% 61%, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0.7) 0.8px, transparent 1.4px),
-        radial-gradient(circle at 18% 82%, rgba(255,255,255,0.85) 0px, rgba(255,255,255,0.85) 1.2px, transparent 2px),
-        radial-gradient(circle at 23% 17%, rgba(255,220,235,0.75) 0px, rgba(255,220,235,0.75) 0.9px, transparent 1.5px),
-        radial-gradient(circle at 27% 44%, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0.7) 0.6px, transparent 1.2px),
-        radial-gradient(circle at 31% 72%, rgba(190,220,255,0.85) 0px, rgba(190,220,255,0.85) 1.4px, transparent 2.2px),
-        radial-gradient(circle at 36% 10%, rgba(255,255,255,0.75) 0px, rgba(255,255,255,0.75) 0.8px, transparent 1.4px),
-        radial-gradient(circle at 39% 35%, rgba(255,255,255,0.9) 0px, rgba(255,255,255,0.9) 1.1px, transparent 1.8px),
-        radial-gradient(circle at 43% 89%, rgba(210,235,255,0.7) 0px, rgba(210,235,255,0.7) 0.7px, transparent 1.3px),
-        radial-gradient(circle at 48% 22%, rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.8) 0.9px, transparent 1.5px),
-        radial-gradient(circle at 52% 57%, rgba(255,215,235,0.75) 0px, rgba(255,215,235,0.75) 1.1px, transparent 1.8px),
-        radial-gradient(circle at 57% 76%, rgba(255,255,255,0.75) 0px, rgba(255,255,255,0.75) 0.8px, transparent 1.4px),
-        radial-gradient(circle at 61% 12%, rgba(190,220,255,0.9) 0px, rgba(190,220,255,0.9) 1.5px, transparent 2.3px),
-        radial-gradient(circle at 65% 39%, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0.7) 0.7px, transparent 1.3px),
-        radial-gradient(circle at 69% 91%, rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.8) 1px, transparent 1.7px),
-        radial-gradient(circle at 73% 24%, rgba(255,220,235,0.8) 0px, rgba(255,220,235,0.8) 0.9px, transparent 1.5px),
-        radial-gradient(circle at 77% 66%, rgba(210,235,255,0.85) 0px, rgba(210,235,255,0.85) 1.3px, transparent 2.1px),
-        radial-gradient(circle at 82% 8%, rgba(255,255,255,0.75) 0px, rgba(255,255,255,0.75) 0.8px, transparent 1.4px),
-        radial-gradient(circle at 86% 47%, rgba(255,255,255,0.9) 0px, rgba(255,255,255,0.9) 1.2px, transparent 1.9px),
-        radial-gradient(circle at 91% 79%, rgba(200,230,255,0.75) 0px, rgba(200,230,255,0.75) 0.9px, transparent 1.5px),
-        radial-gradient(circle at 96% 31%, rgba(255,255,255,0.7) 0px, rgba(255,255,255,0.7) 0.7px, transparent 1.3px);
-
-      opacity: 0.92;
-      mix-blend-mode: screen;
-
-      transform: translate3d(var(--stars-x), var(--stars-y), 0);
-      will-change: transform;
+      transform: translate(var(--texture-x), var(--texture-y));
+      transition: transform 0.12s ease;
     }
 
     .back-cavity::after {
@@ -314,20 +206,14 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      z-index: 3;
+      z-index: 2;
 
       background:
         radial-gradient(
           ellipse at center,
-          rgba(255, 255, 255, 0.025) 0%,
-          transparent 48%,
-          rgba(0, 0, 0, 0.42) 100%
-        ),
-        linear-gradient(
-          145deg,
-          rgba(255, 255, 255, 0.025),
-          transparent 45%,
-          rgba(0, 0, 0, 0.22)
+          rgba(255, 255, 255, 0.035) 0%,
+          transparent 55%,
+          rgba(64, 18, 26, 0.16) 100%
         );
     }
 
@@ -359,8 +245,7 @@
       letter-spacing: 0.05em;
 
       text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.75),
-        0 0 12px rgba(90, 150, 255, 0.2);
+        0 2px 3px rgba(0, 0, 0, 0.34);
     }
 
     .contact-list {
@@ -378,8 +263,7 @@
       letter-spacing: 0.06em;
 
       text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.75),
-        0 0 12px rgba(90, 150, 255, 0.2);
+        0 2px 3px rgba(0, 0, 0, 0.34);
     }
 
     .contact-list a:hover {
@@ -444,11 +328,8 @@
 
         <div class="card-face card-back">
           <div class="back-cavity">
-            <div class="cavity-space"></div>
-            <div class="cavity-stars"></div>
+            <div class="cavity-texture"></div>
           </div>
-
-          <div class="back-border-holo"></div>
 
           <div class="back-text-layer">
             <div class="back-logo">Join PokéPharm!</div>
@@ -458,6 +339,8 @@
               <a href="#">Contact</a>
             </div>
           </div>
+
+          <div class="cursor-light"></div>
         </div>
       </div>
     </div>
@@ -469,7 +352,6 @@
     const shine = document.querySelector(".shine");
     const cursorLights = document.querySelectorAll(".cursor-light");
     const backCavity = document.querySelector(".back-cavity");
-    const backBorderHolo = document.querySelector(".back-border-holo");
 
     let isHovering = false;
 
@@ -494,24 +376,17 @@
       physicalCard.style.setProperty("--tilt-y", `${rotateY}deg`);
       physicalCard.style.setProperty("--scale", "1.03");
 
-      const spaceX = (rotateY * 0.32).toFixed(2);
-      const spaceY = (-rotateX * 0.32).toFixed(2);
+      const textureX = Math.round(-rotateY * 0.45);
+      const textureY = Math.round(rotateX * 0.45);
 
-      const starsX = (rotateY * 0.7).toFixed(2);
-      const starsY = (-rotateX * 0.7).toFixed(2);
-
-      backCavity.style.setProperty("--space-x", `${spaceX}px`);
-      backCavity.style.setProperty("--space-y", `${spaceY}px`);
-      backCavity.style.setProperty("--stars-x", `${starsX}px`);
-      backCavity.style.setProperty("--stars-y", `${starsY}px`);
+      backCavity.style.setProperty("--texture-x", `${textureX}px`);
+      backCavity.style.setProperty("--texture-y", `${textureY}px`);
 
       cursorLights.forEach((light) => {
         light.style.setProperty("--x", `${percentX * 100}%`);
         light.style.setProperty("--y", `${percentY * 100}%`);
         light.style.opacity = "0.55";
       });
-
-      backBorderHolo.style.backgroundPosition = `${shineX * 100}% ${shineY * 100}%`;
 
       if (!container.classList.contains("is-flipped")) {
         shine.style.opacity = "0.85";
@@ -528,10 +403,8 @@
       physicalCard.style.setProperty("--tilt-y", "0deg");
       physicalCard.style.setProperty("--scale", "1");
 
-      backCavity.style.setProperty("--space-x", "0px");
-      backCavity.style.setProperty("--space-y", "0px");
-      backCavity.style.setProperty("--stars-x", "0px");
-      backCavity.style.setProperty("--stars-y", "0px");
+      backCavity.style.setProperty("--texture-x", "0px");
+      backCavity.style.setProperty("--texture-y", "0px");
 
       shine.style.opacity = "0";
 
